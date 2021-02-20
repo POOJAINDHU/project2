@@ -2,9 +2,12 @@
 <html>
 <head>
 	<title> </title>
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 </head>
 <body>
+	<div class="row justify-content-center">
 
+	</div>
 </body>
 </html>
 <script>
@@ -12,6 +15,33 @@
 	fetch("data/data.json").then(reponse=>{
 		return reponse.json()
 	}).then(finalData=>{
-		console.log(finalData)
+		displayData(finalData.products)
 	})
+ 
+	var row=document.querySelector(".row")
+	function displayData(information){
+		information.map((item,index)=>{
+			var column=document.createElement("div");
+			column.classList.add("col-lg-3","col-md-6")
+
+			row.appendChild(column)
+
+			var card=document.createElement("div");
+			card.classList.add("card")
+
+			column.appendChild(card)
+
+			var cardBody=document.createElement("div")
+			cardBody.classList.add("card-body")
+
+			card.appendChild(cardBody);
+
+            var name=document.createElement("h3")
+             name.classList.add("text-primary","text-center")
+
+			 name.textContent=item.name;
+
+			 cardBody.appendChild(name)
+		})
+	}
 </script>
